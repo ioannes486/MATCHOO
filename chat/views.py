@@ -12,7 +12,7 @@ def generate_text(request):
     input_text = request.POST.get('input_text', '')
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer key',
     }
     data = {
         'prompt': input_text,
