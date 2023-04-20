@@ -1,13 +1,16 @@
+# Note: you need to be using OpenAI Python v0.27.0 for the code below to work
+
 import requests
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import openai
 
-openai.api_key = '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'
+openai.api_key = 'MY_API_KEY'
 
 def home(request):
     return render(request, 'chat/home.html')
+
 
 
 @csrf_exempt
@@ -16,9 +19,9 @@ def generate_text(request):
         user_message = request.POST.get('message')
         messages = [{'role': 'user', 'text': user_message}]
         completion = openai.Completion.create(
-            engine='text-davinci-003',
+            model='text-davinci-003',
             prompt='\n'.join([f'{m["role"]}: {m["text"]}' for m in messages]),
-            temperature=0.5,
+            temperature=1, # 얼마나 자연스럽게 답을 줄건지에 대해 높을수록 자연스러운 대화 가능
             max_tokens=1024,
             n=1,
             stop=None,
@@ -28,5 +31,6 @@ def generate_text(request):
         messages.append({'role': 'assistant', 'text': assistant_message})
         return JsonResponse({'messages': messages})
 
-# 설문조사바탕으로 답변된 항목을 텍스트로 바꿔서 
-# 답변이 ai에 들어가서 자동 리다이렉트
+
+
+
