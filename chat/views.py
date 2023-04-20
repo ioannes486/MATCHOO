@@ -2,23 +2,31 @@ import requests
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+import openai
 
+openai.api_key = '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'
 
 def home(request):
     return render(request, 'chat/home.html')
 
+
 @csrf_exempt
 def generate_text(request):
-    input_text = request.POST.get('input_text', '')
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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',
-    }
-    data = {
-        'prompt': input_text,
-        'max_tokens': 50,
-    }
-    response = requests.post('https://api.openai.com/v1/engines/davinci-codex/completions', headers=headers, json=data)
-    output_text = response.json().get('completions', [{}])[0].get('text', '응답없음')
-    return JsonResponse({'output_text': output_text})
+    if request.method == 'POST':
+        user_message = request.POST.get('message')
+        messages = [{'role': 'user', 'text': user_message}]
+        completion = openai.Completion.create(
+            engine='text-davinci-003',
+            prompt='\n'.join([f'{m["role"]}: {m["text"]}' for m in messages]),
+            temperature=0.5,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            timeout=15,
+        )
+        assistant_message = completion.choices[0].text.strip()
+        messages.append({'role': 'assistant', 'text': assistant_message})
+        return JsonResponse({'messages': messages})
 
+# 설문조사바탕으로 답변된 항목을 텍스트로 바꿔서 
+# 답변이 ai에 들어가서 자동 리다이렉트
