@@ -32,10 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'polls',
-<<<<<<< HEAD
     'chat',
-=======
->>>>>>> 9978ae826078707f5b0fe4e922236635ecdc05a9
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
