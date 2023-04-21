@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>유형조사</h1>
+
+<fieldset>
+    <legend>
+      <h1>{{question.question_text}}</h1>
+    </legend>
+    {% if error_message %} <p><strong>{{error_message}}</strong></p>{% endif %}
+    {% for choice in question.choice_set.all  %}
+        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+        <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Vote">
+
+
+<form action="{% url 'polls:results' %}" method="post">
+    {% csrf_token %}
+    <ul>
+        <li>
+            Q1
+            <input type="radio" id="a1" name="q1" value="a1" checked>
+            <label for="a1">a1</label>
+            <input type="radio" id="a2" name="q1" value="a2">
+            <label for="a2">a2</label>
+        </li>
+        <li>
+            Q2
+            <input type="radio" id="a1" name="q2" value="a1" checked>
+            <label for="a1">a1</label>
+            <input type="radio" id="a2" name="q2" value="a2">
+            <label for="a2">a2</label>
+        </li>
+        <li>
+            Q3
+            <input type="radio" id="a1" name="q3" value="a1" checked>
+            <label for="a1">a1</label>
+            <input type="radio" id="a2" name="q3" value="a2">
+            <label for="a2">a2</label>
+        </li>
+        <li>
+            Q4
+            <input type="radio" id="a1" name="q4" value="a1" checked>
+            <label for="a1">a1</label>
+            <input type="radio" id="a2" name="q4" value="a2">
+            <label for="a2">a2</label>
+        </li>
+        <li>
+            Q5
+            <input type="radio" id="a1" name="q5" value="a1" checked>
+            <label for="a1">a1</label>
+            <input type="radio" id="a2" name="q5" value="a2">
+            <label for="a2">a2</label>
+        </li>
+    </ul>
+    <input type="submit" value="제출">
+</form>
+{% endblock content %}

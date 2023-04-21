@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Select</h1>
+<!-- <a href="{ % url 'polls:detail' % }">추천받기</a>-->
+
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock content %}
