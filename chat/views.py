@@ -21,7 +21,7 @@ def generate_text(request):
         completion = openai.Completion.create(
             model='text-davinci-003',
             prompt='\n'.join([f'{m["role"]}: {m["text"]}' for m in messages]),
-            temperature=1, # 얼마나 자연스럽게 답을 줄건지에 대해 높을수록 자연스러운 대화 가능
+            temperature=0, # 얼마나 자연스럽게 답을 줄건지에 대해 높을수록 자연스러운 대화 가능
             max_tokens=1024,
             n=1,
             stop=None,
