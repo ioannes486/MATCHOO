@@ -15,7 +15,6 @@ def crawl_reviews(query, size=10):
     url_place = {}
     all_dict = {}
     one_dict = {'별점':[], '메뉴':[], '리뷰':[]}
-    API_KEY = '74fcb417003503000e51be1ac0df5669'
 
     ## API 요청 URL 설정
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
@@ -34,7 +33,7 @@ def crawl_reviews(query, size=10):
         url_place[key] = json_data['documents'][i]['place_url'] # 가게의 주소 value로 저장
 
     #2. 리뷰크롤링
-    for key in url_place:
+    for idx, key in enumerate(url_place):
 
         review_all = []
         star_all = []
@@ -73,7 +72,7 @@ def crawl_reviews(query, size=10):
 
                 
         except:
-            print(key, '에러가 났다')
+            print(idx, '에러가 났다')
             review_all = append_to_list(review_all, get_reviews('comment_info'))
 
             
