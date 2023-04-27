@@ -15,7 +15,6 @@ def crawl_reviews(query, size=10):
     url_place = {}
     all_dict = {}
     one_dict = {'별점':[], '메뉴':[], '리뷰':[]}
-    API_KEY = '***REMOVED***'
 
     ## API 요청 URL 설정
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
