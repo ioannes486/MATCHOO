@@ -9,14 +9,38 @@
     <div id="chat-output"></div>
     <form id="chat-form" method="POST" action="{% url 'chat:generate_text' %}">
         {% csrf_token %}
-        <input type="text" id="chat-input" value="sample.txt" readonly>
+        <input type="text" id="chat-input">
         <button type="submit" id="chat-submit">Send</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#chat-form').submit();
+        $('#chat-input').focus();
+        $('#chat-form').on('submit', function (event) {
+            event.preventDefault();
+            var input_text = $('#chat-input').val();
+            $('#chat-output').append('<p><strong>You:</strong> ' + input_text + '</p>');
+            $('#chat-input').val('');
+            $.ajax({
+                url: '{% url 'chat:generate_text' %}',
+                method: 'POST',
+                data: {
+                    'message': input_text,
+                    'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function (data) {
+                    var messages = data.messages;
+                    for (var i = 0; i < messages.length; i++) {
+                        var role = messages[i].role;
+                        var text = messages[i].text;
+                        $('#chat-output').append('<p><strong>' + role + ':</strong> ' + text + '</p>');
+                    }
+                    $('#chat-window').scrollTop($('#chat-window')[0].scrollHeight);
+                    $('#chat-input').focus();
+                }
+            });
+        });
     });
 </script>
 </body>
