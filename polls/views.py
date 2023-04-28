@@ -17,11 +17,15 @@ def index(request):
 def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
-# 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
-# openai.api_key = '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'
+
 openai.api_key = 'api'
 
 def results(request):
+    with open('API_KEY.txt') as api_key:
+        for line in api_key:
+            openai.api_key = line
+        
+
     if request.method == 'POST':
         # 요청 받아서 문구 만들기
         res = request.POST
