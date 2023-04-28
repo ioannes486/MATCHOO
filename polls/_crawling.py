@@ -111,7 +111,7 @@ def to_df(path='./down_3.0_data.json'):
 
 
 if __name__ == '__main__':
-    #print(crawl_reviews('강남맛집'))
+    print(crawl_reviews('강남맛집'))
     print(to_df())
     #crawl_reviews('강남맛집')
 
