@@ -19,6 +19,7 @@ def detail(request):
 
 # 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
 # openai.api_key = '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'
+openai.api_key = 'api'
 
 def results(request):
     if request.method == 'POST':
