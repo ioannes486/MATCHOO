@@ -1,11 +1,11 @@
-from pip._vendor import requests 
+import requests 
 from selenium.webdriver.common.by import By
 import pandas as pd
 import json
 import time
 
 
-from preprocess import driver, get_reviews, get_stars, append_to_list, unfold
+from _preprocess import driver, get_reviews, get_stars, append_to_list, unfold
 
 API_KEY = 'MY_API_KEY'
 
@@ -84,26 +84,35 @@ def crawl_reviews(query, size=10):
 
     path = "./down_3.0_data.json"
 
+    #3. 파일을 json형태로 저장
     with open(path, 'w', encoding='UTF-8') as outfile:
         json.dump(all_dict, outfile, indent=4,ensure_ascii=False)
         
     time.sleep(1)
 
     driver.quit()
+
+    return all_dict
+
+def to_df(path='./down_3.0_data.json'):
+    with open(path, 'r',encoding="UTF-8") as f:
+        json_data = json.load(f)
     
-    #3. 데이터프레임화
     review_data = []
     name_data = []
 
-    for store in all_dict:
-        for j in range(len(all_dict[store]['reviews'])):
+    for store in json_data:
+        for j in range(len(json_data[store]['reviews'])):
             name_data.append(store)
-            review_data.append(all_dict[store]['reviews'][j])
+            review_data.append(json_data[store]['reviews'][j])
 
     df = pd.DataFrame({'store' :name_data, 'review': review_data})
     return df
 
 
 if __name__ == '__main__':
-    print(crawl_reviews('강남맛집'))
+    #print(crawl_reviews('강남맛집'))
+    print(to_df())
     #crawl_reviews('강남맛집')
+
+# 후속과제 : 리뷰가 없거나 짧을 경우 크롤링 하지 않게 만들기, 리뷰 개수 늘리기
