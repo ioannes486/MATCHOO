@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import openai
 
-openai.api_key = 'mine'
+openai.api_key = 'myapi'
 
 def home(request):
     return render(request, 'chat/home.html')
