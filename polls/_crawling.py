@@ -3,12 +3,9 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 import json
 import time
+from django.conf import settings
 
-
-from _preprocess import driver, get_reviews, get_stars, append_to_list, unfold
-
-API_KEY = 'MY_API_KEY'
-
+from ._preprocess import driver, get_reviews, get_stars, append_to_list, unfold
 def crawl_reviews(query, size=10):
     # 1. 링크 크롤링
     ## 변수 초기화
@@ -20,7 +17,7 @@ def crawl_reviews(query, size=10):
     url = "https://dapi.kakao.com/v2/local/search/keyword.json"
 
     ## API 요청 헤더정보와 파라미터 설정
-    headers = {"Authorization": f"KakaoAK {API_KEY}"}
+    headers = {"Authorization": f"KakaoAK {settings.KAKAO_API_KEY}"}
     params = {"query": query,"size": size}
 
     ## API 요청 및 결과 받아오기
