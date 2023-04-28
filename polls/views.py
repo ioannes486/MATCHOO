@@ -18,7 +18,7 @@ def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
 # 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
-openai.api_key = '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'
+openai.api_key = 'api'
 
 def results(request):
     if request.method == 'POST':
