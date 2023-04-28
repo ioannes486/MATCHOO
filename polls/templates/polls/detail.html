@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>유형조사</h1>
+
+<form action="{% url 'polls:results' %}" method="post">
+    {% csrf_token %}
+    <ul>
+        <li>
+            <p>여행 좋아하십니까?</p>
+            <input type="radio" id="y" name="trip" value="yes" checked>
+            <label for="y">예</label>
+            <input type="radio" id="n" name="trip" value="no">
+            <label for="n">아니오</label>
+        </li>
+        <li>
+            <p>선호하는 여행지 속성</p>
+            <input type="radio" id="city" name="type" value="city" checked>
+            <label for="city">도시</label>
+            <input type="radio" id="nature" name="type" value="nature">
+            <label for="nature">자연</label>
+        </li>
+        <li>
+            <p>선호하는 이동방식</p>
+            <p><input type="radio" id="drive" name="movement" value="drive" checked>
+            <label for="drive">운전하며 다니기 (자차, 렌트 등)</label></p>
+            <p><input type="radio" id="walk" name="movement" value="walk">
+            <label for="walk">대중교통, 걸어다니기</label></p>
+        </li>
+        <li>
+            <p>선호하는 여행지의 인지도</p>
+            <input type="radio" id="famous" name="pop" value="famous" checked>
+            <label for="famous">유명한 곳</label>
+            <input type="radio" id="rare" name="pop" value="rare">
+            <label for="rare">생소한 곳</label>
+        </li>
+        <li>
+            <p>여행길, 누구와 함께 할 것인가</p>
+            <input type="radio" id="alone" name="with" value="alone" checked>
+            <label for="alone">혼자</label>
+            <input type="radio" id="tog" name="with" value="tog">
+            <label for="tog">함께</label>
+        </li>
+        <li>
+            <p>여행지에서는 어떻게 할 것인가</p>
+            <p><input type="radio" id="act" name="how" value="act" checked>
+            <label for="act">돌아다닐것이다</label></p>
+            <p><input type="radio" id="rest" name="how" value="rest">
+            <label for="rest">편안히 쉬겠다</label></p>
+        </li>
+    </ul>
+    <input type="submit" value="제출">
+</form>
+{% endblock content %}
