@@ -25,9 +25,14 @@ def crawl_reviews(query, size=10):
     json_data = response.json()
 
     ## {'상호명' : 'url'} 형태의 딕셔너리로 만들기
-    for i in range(len(json_data['documents'])):
-        # key = json_data['documents'][i]['place_name'] # 가게 이름을 key로
-        url_place[key] = json_data['documents'][i]['place_url'] # 가게의 주소 value로 저장
+    
+    if 'json_data' in locals() and 'documents' in json_data:
+        for i in range(len(json_data['documents'])):
+            key = json_data['documents'][i]['place_name'] # 가게 이름을 key로
+            url_place[key] = json_data['documents'][i]['place_url'] # 가게의 주소 value로 저장
+    else:
+    # 예외 처리 코드 추가
+        pass # 예외 처리 코드를 추가하세요.
 
     #2. 리뷰크롤링
     for idx, key in enumerate(url_place):

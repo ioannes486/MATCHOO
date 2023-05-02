@@ -128,7 +128,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-with open('API_KEY.txt') as a:
+with open('API_KEY.txt', 'r') as a:
     api_key = [line.strip('\n') for line in a]
     print(api_key)
 
