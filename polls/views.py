@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.views import generic
 import json
 import openai
+from ._crawling import crawl_reviews, to_df
+from django.conf import settings
 
 def index(request):
     context = {"title": 'Home'}
@@ -17,8 +19,8 @@ def index(request):
 def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
-
-openai.api_key = 'api'
+# 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
+openai.api_key = settings.OPENAI_API_KEY
 
 def results(request):
     with open('API_KEY.txt') as api_key:
@@ -45,12 +47,15 @@ def results(request):
         assistant_message = completion.choices[0].text.strip()
         messages.append({'role': 'assistant', 'text': assistant_message})
         bot_message = messages[1]['text'].strip('!')
-        print(res)
-        dir(res)
-        #return messages
+        bot_message = '강남맛집'
+        crawl_reviews(bot_message)
+        store_list = list(set(to_df().store.to_list()))
+
+        context = {'bot_message': bot_message, 
+                   'store_list' : store_list}
+
     
-        return render(request, 'polls/results.html', {'bot_message': bot_message})
-        #return render(request, "polls/results.html", context)
+        return render(request, 'polls/results.html', context)
 
 def vote(request):
     pass
