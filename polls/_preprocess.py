@@ -8,6 +8,7 @@ service = Service(executable_path=ChromeDriverManager().install())
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 driver = webdriver.Chrome(service=service, options=options)
+
 # review를 가져오는 함수
 def get_reviews(Class_name):
     review_list=[]
@@ -18,14 +19,14 @@ def get_reviews(Class_name):
         review_list.append(t.text.split('좋아요')[0].replace("\n",''))
         
     while True:
-        try:
+        try:                                                    # 더보기 버튼 selector 소스
             more_btn = driver.find_element(By.CSS_SELECTOR, '#mArticle > div.cont_evaluation > div.evaluation_review > a')
             more_btn.click()
             time.sleep(2)
             text = driver.find_elements(By.CLASS_NAME, class_name)
             for t in text:
                 review_list.append(t.text.split('좋아요')[0].replace("\n",''))
-            if len(review_list) >= 30:
+            if len(review_list) >= 30: # 가져올 리뷰 개수
                 break
         except:
             break
