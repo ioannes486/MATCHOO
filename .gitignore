@@ -276,4 +276,5 @@ pyvenv.cfg
 pip-selfcheck.json
 
 API_KEY.txt
+best_kobert_weights.h5
 # End of https://www.toptal.com/developers/gitignore/api/python,django,venv
