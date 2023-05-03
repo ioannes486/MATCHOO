@@ -14,9 +14,6 @@ def get_reviews(Class_name):
     review_list=[]
     class_name = Class_name
     text = driver.find_elements(By.CLASS_NAME,class_name)
-
-    for t in text:
-        review_list.append(t.text.split('좋아요')[0].replace("\n",''))
         
     while True:
         try:                                                    # 더보기 버튼 selector 소스

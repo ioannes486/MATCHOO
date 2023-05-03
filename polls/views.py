@@ -28,7 +28,7 @@ def results(request):
     if request.method == 'POST':
         # 요청 받아서 문구 만들기
         res = request.POST
-        user_message = '나는 {}고 {}고 {}고 {}고 {}고 {}해 나한테 부연설명,부가설명없이 단답형으로 한국여행지 한 곳 이름만 나오게 추천해줘'.format(res.get('trip'), res.get('type'), res.get('movement'), res.get('pop'), res.get('with'), res.get('how'), )
+        user_message = '앞으로 단답으로만 대답해 나는 {}고 {}고 {}고 {}고 {}고 {}해 나한테 부연설명,부가설명없이 단답형으로 한국 여행지 한 곳 무조건 이름만 추가설명없이 나오게 해줘'.format(res.get('trip'), res.get('type'), res.get('movement'), res.get('pop'), res.get('with'), res.get('how'), )
 
         # 만든 문구로 챗봇에게 넘겨주기
         messages = [{'role': 'user', 'text': user_message}]

@@ -75,7 +75,7 @@ def crawl_reviews(query, size=10):
 
                 
         except:
-            print(idx, '에러가 났다')
+            print(idx, '크롤링 완료')
             review_all = append_to_list(review_all, get_reviews('comment_info'))
 
             
