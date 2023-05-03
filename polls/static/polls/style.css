@@ -1,7 +1,110 @@
-li a {
+/* li a {
   color: black;
 }
 
 body {
   background: white url("images/background") no-repeat;
+} */
+
+/* result css */
+
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+  list-style: none;
+  text-decoration: none;
+  border-collapse: collapse;
+  margin:0px;
+  padding: 0px;
+  color: #000;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 100;
+}
+.contents1{
+  font-size: 20px;
+  font-weight: lighter;
+}
+.contents2{
+  font-size: 18px;
+}
+.contents1_bold{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result{
+  font-size: 24px;
+}
+
+.intro_bg{
+  background-image: url("https://media.discordapp.net/attachments/1097689297974468654/1097789338227589140/image.png?width=706&height=481") no-repeat;
+  width: 100%;
+  height: 100px;
+}
+
+.amount{
+  position: relative;
+  top:-66px;
+  display: flex;
+  width:1280px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+.amount > li {
+  flex: 1;
+  height: 132px;
+}
+.amount > li > div {
+  text-align: center;
+  margin-top:37px;
+  height:57px;
+}
+
+.amount > li:not(:last-child) > div{
+  border-right:1px solid #E1E1E1;
+}
+
+
+.intro_text{
+  width:100%;
+  margin:231px auto 231px auto;
+  text-align: center;
+}
+.intro_text > h1,
+.intro_text > h4{
+  color:#000;
+}
+
+/* main_text0 */
+
+.main_text0{
+  width: 100%;
+  height:601px;
+  margin-top:-132px;
+  background: #f1f2f3;
+}
+.main_text0 > h1{
+  padding-top:116px;
+  text-align: center;
+}
+.main_text0 > .contents1 {
+  text-align: center;
+}
+
+.footer{
+  display: flex;
+  background: #1f1f1f;
+  padding:30px;
+}
+.footer > div:first-child {
+  flex:3;
+  text-align: center;
+  color: #fff;
+}
+.footer > div:last-child {
+  flex:9;
+  color: #fff;
 }

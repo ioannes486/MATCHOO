@@ -25,3 +25,13 @@ class SurveyResult(models.Model):
     movement_preference = models.CharField(max_length=50)
     company_preference = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+    
+
+class Review(models.Model):
+    store = models.CharField(max_length=100)
+    review = models.TextField()
+
+    def __str__(self):
+        return self.review

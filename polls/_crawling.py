@@ -44,35 +44,31 @@ def crawl_reviews(query, size=10):
 
 
         try:
-            page = driver.find_element(By.CLASS_NAME,'wrap_mapdetail lbar_on') # 이 클래스 이름이 바뀐거 같음
-            print(page)
-            end_page = len(page.text.replace(" ","")) # 페이지를 넘기기
-            print(end_page)
-            for p in range(2, end_page+1): # 얘가 리뷰 가지고 오는 횟수를 정하는거 같은데 어떻게 바꿀까
-                
-                time.sleep(3)
+            # 리뷰 페이지 전체를 감싸는 엘리먼트 가져오기
+            review_wrap = driver.find_element(By.CSS_SELECTOR, 'div.evaluation_review')
+            while True:
+                # 현재 페이지에서 리뷰 가져오기
                 review_all = append_to_list(review_all, get_reviews('comment_info'))
                 star_all = append_to_list(star_all, get_stars('num_rate'))
-                if (end_page == 2):
-                    page_select = "#mArticle > div.cont_evaluation > div.evaluation_review > div > a"
 
-                else:
-                    page_select = "#mArticle > div.cont_evaluation > div.evaluation_review > div > a:nth-child("+str(p+1)+")"
+                # 다음 버튼이 없을 경우 더 이상 가져올 리뷰가 없음
+                if 'disabled' in review_wrap.find_element(By.CSS_SELECTOR, 'a.btn_g.btn_page.next').get_attribute('class'):
+                    break
 
-                    
-                next_page = driver.find_element(By.CSS_SELECTOR,page_select)
+                # 다음 페이지로 이동
+                driver.find_element(By.CSS_SELECTOR, 'a.btn_g.btn_page.next').click()
                 time.sleep(3)
-                next_page.click()
-                time.sleep(2)
-                unfold('btn_fold')
-                p+=1
 
-                
+                # 더보기 버튼 누르기
+                unfold('btn_fold')
+
+                # 리뷰 페이지 전체를 감싸는 엘리먼트 다시 가져오기
+                review_wrap = driver.find_element(By.CSS_SELECTOR, 'div.evaluation_review')
         except:
             print(idx, '에러가 났다')
             review_all = append_to_list(review_all, get_reviews('comment_info'))
 
-            
+        # 한 가게의 모든 리뷰를 딕셔너리에 추가
         one_dict = {'reviews':review_all}
         all_dict[key] = one_dict
 
