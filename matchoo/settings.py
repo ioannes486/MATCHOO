@@ -125,6 +125,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+# # 로딩 페이지 위해 넣은 코드
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+#     os.path.join(BASE_DIR, 'videos'),
+# ]
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
