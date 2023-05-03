@@ -1,7 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-
+​
 <a href="{% url 'polls:detail' %}">Vote again?</a><br>
-{{ bot_message }}
-{{ store_list }}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+<div class="wrap">
+    <div class="intro_bg">
+      <div class="intro_text">
+        <h1>MatChoo</h1>
+        <h4 class="contents1">당신의 성향에 알맞은 여행지를 추천해드려요!</h4>
+​
+    </div>
+    </div>
+    <!-- intro end-->
+​
+    <ul class="amount">
+      <li>
+        <div>
+          <div class="contents1">당신에게 추천된 지역은 <h1 style="display:inline">{{bot_message}}</h1> 입니다</div>
+          <div class="result">  </div>
+        </div>
+      </li>
+    </ul>
+    <!-- result end -->
+​
+    <div class="main_text0">
+      <div class="contents1_bold">{{bot_message}}의 맛집을 확인해보세요!</div>
+      <div class="contents2">
+        {% for store in store_list %}
+            <li>{{store}}</li>
+            <input id='review' type='button' onclick='newPage()' value='리뷰 확인하기' />
+        {%endfor%}
+      </div>
+    </div>
+​
+​
+    <div class="footer">
+      <div>
+        <!--챗봇 심기 / 아니면 없애고-->
+      </div>
+    </div>
+  </div>
 {% endblock content %}
