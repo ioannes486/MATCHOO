@@ -6,8 +6,9 @@ urlpatterns = [
     path("detail/", views.detail, name='detail'),
     path("results/", views.results, name='results'),
     path("vote/", views.vote, name="vote"),
+    path('store_detail/', views.store_detail, name='store_detail'),
 ]
 #     path('', views.index, name='index'),
 #     path('detail/', views.detail, name='detail'),
 #     path('results/', views.results, name='results'),
-# ]
+# 

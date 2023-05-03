@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% for review in reviews %}
+  <p>{{ review }}</p>
+{% empty %}
+  <p>리뷰가 없습니다</p>
+{% endfor %}
+
+
+
+{% endblock content %}

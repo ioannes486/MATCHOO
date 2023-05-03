@@ -7,6 +7,9 @@ import json
 import openai
 from ._crawling import crawl_reviews, to_df
 from django.conf import settings
+import pandas as pd
+
+from .models import Review
 
 def index(request):
     context = {"title": 'Home'}
@@ -20,6 +23,7 @@ def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
 # 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
+openai.api_key = settings.OPENAI_API_KEY
 openai.api_key = settings.OPENAI_API_KEY
 
 def results(request):
@@ -46,14 +50,56 @@ def results(request):
         crawl_reviews(bot_message)
         store_list = list(set(to_df().store.to_list()))
 
-        context = {'bot_message': bot_message, 
-                   'store_list' : store_list}
 
-    
+        context = {'bot_message': bot_message, 
+                   'store_list' : store_list,}
+
         return render(request, 'polls/results.html', context)
 
 def vote(request):
     pass
+
+
+
+def store_detail(request):
+
+# 3안
+    for index, row in to_df().iterrows():
+        store = row['store']
+        review = row['review']
+        review_obj = Review(store=store, review=review)
+        review_obj.save()
+
+    store = request.GET.get('store')
+    reviews = Review.objects.filter(store=store)
+    reviews_list = [review.review for review in reviews]
+
+    context = {'reviews': reviews_list}
+
+    return render(request, 'polls/store_detail.html', context)
+
+
+# 2안
+    # store_list = request.GET.get('store', '')
+    # reviews = Review.objects.filter(store=store_list)
+    # context = {'reviews': reviews}
+    # return render(request, 'polls/store_detail.html', context)
+
+# 1안
+    # grouped = to_df().groupby('store')
+    # grouped_review = []
+    # for group in grouped:
+    #     grouped_review = group[1]['review']
+    
+    # context = {'grouped_review':grouped_review}
+
+    # return render(request, 'polls/store_detail.html', context)
+
+
+
+
+
+
 
 #     # <label for='activity'> 평소 활동적인걸 좋아하시나요 ? </label>
 #     # <input type='radio' id='activity' name='activity' value='yes' />좋아한다
