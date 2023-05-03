@@ -53,9 +53,10 @@ def crawl_reviews(query, size=10):
             print(page)
             end_page = len(page.text.replace(" ","")) # 페이지를 넘기기
             print(end_page)
-            for p in range(2, end_page+1): # 얘가 리뷰 가지고 오는 횟수를 정하는거 같은데 어떻게 바꿀까
+            for p in range(2, 11): # 2에서 10까지의 페이지에서 리뷰 가져오기
+                                # 얘가 리뷰 가지고 오는 횟수를 정하는거 같은데 어떻게 바꿀까
                 
-                time.sleep(3)
+                time.sleep()
                 review_all = append_to_list(review_all, get_reviews('comment_info'))
                 star_all = append_to_list(star_all, get_stars('num_rate'))
                 if (end_page == 2):
