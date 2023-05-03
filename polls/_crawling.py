@@ -120,7 +120,6 @@ def to_df(path='./down_3.0_data.json'):
     df.reset_index(drop=True)
     
     df['prediction'] = df.review.apply(lambda x : inference_bert.predict_sentiment(x, tokenizer, model))
-    
     return df
 
 

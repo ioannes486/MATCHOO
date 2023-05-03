@@ -3,9 +3,11 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect, JsonRespons
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.views.decorators.cache import cache_page
 import json
 import openai
 from ._crawling import crawl_reviews, to_df
+from ._chat import recommand_traveling_site
 from django.conf import settings
 import pandas as pd
 import time
@@ -27,35 +29,38 @@ def detail(request):
 openai.api_key = settings.OPENAI_API_KEY
 openai.api_key = settings.OPENAI_API_KEY
 
+
+
 def results(request):
+
+
 
     if request.method == 'POST':
         # 요청 받아서 문구 만들기
         res = request.POST
-        user_message = '나는 {}고 {}고 {}고 {}고 {}고 {}해 나한테 부연설명 없이 단답형으로 한국여행지 한 곳을 추천해줘'.format(res.get('trip'), res.get('type'), res.get('movement'), res.get('pop'), res.get('with'), res.get('how'), )
+        bot_message = recommand_traveling_site(res)
+        #store_list = to_df().prediction
+        
 
-        # 만든 문구로 챗봇에게 넘겨주기
-        messages = [{'role': 'user', 'text': user_message}]
-        completion = openai.Completion.create(
-            model='text-davinci-003',
-            prompt='\n'.join([f'{m["role"]}: {m["text"]}' for m in messages]),
-            temperature=0, # 얼마나 자연스럽게 답을 줄건지에 대해 높을수록 자연스러운 대화 가능
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            timeout=15,
-        )
-        assistant_message = completion.choices[0].text.strip()
-        messages.append({'role': 'assistant', 'text': assistant_message})
-        bot_message = messages[1]['text'].strip('!')
-        bot_message = '강남맛집'
-        crawl_reviews(bot_message)
-        store_list = list(set(to_df().store.to_list()))
+        # 추천한 여행지와 "맛집" 키워드를 함께 검색하여 크롤링
+        keyword = '맛집'
+        query = f"{bot_message} {keyword}"
+        crawl_reviews(query)
+        df = to_df()
 
+        df_html = df.to_html(
+                        columns=['store', 'review'],
+                        index=False, na_rep="", bold_rows=True,
+                        classes=["table", "table-hover", "table-processed"])
+        
+        store_list = to_df().store.unique().tolist()
+        
 
-        context = {'bot_message': bot_message, 
-                   'store_list' : store_list,}
-        time.sleep(60)
+        context = {
+            'bot_message': bot_message, 
+            'store_list' : store_list,
+            'df_html' : df_html,}
+        
 
         return render(request, 'polls/results.html', context)
     
