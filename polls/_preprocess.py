@@ -23,7 +23,7 @@ def get_reviews(Class_name):
             text = driver.find_elements(By.CLASS_NAME, class_name)
             for t in text:
                 review_list.append(t.text.split('좋아요')[0].replace("\n",''))
-            if len(review_list) >= 30: # 가져올 리뷰 개수
+            if len(review_list) >= 10: # 가져올 리뷰 개수
                 break
         except:
             break

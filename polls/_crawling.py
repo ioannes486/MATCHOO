@@ -7,7 +7,11 @@ from django.conf import settings
 
 from ._preprocess import driver, get_reviews, get_stars, append_to_list, unfold
 from . import inference_bert
-def crawl_reviews(query, size=10):
+
+tokenizer = settings.TOKENIZER_KOBERT
+model = settings.MODEL_KOBERT
+
+def crawl_reviews(query, size=5):
     # 1. 링크 크롤링
     ## 변수 초기화
     url_place = {}
@@ -98,16 +102,6 @@ def crawl_reviews(query, size=10):
 
     return all_dict
 
-def bert_predict(target_sentence):
-
-
-    tokenizer = settings.TOKENIZER_KOBERT
-    model = settings.MODEL_KOBERT
-
-    # "89% 확률로 긍정 리뷰입니다."
-    result_bert = inference_bert.predict_sentiment(target_sentence, tokenizer, model)
-    return result_bert
-
 def to_df(path='./down_3.0_data.json'):
     with open(path, 'r',encoding="UTF-8") as f:
         json_data = json.load(f)
@@ -123,7 +117,7 @@ def to_df(path='./down_3.0_data.json'):
     df = pd.DataFrame({'store' :name_data, 'review': review_data})
 
     
-    df['prediction'] = df.review.apply(bert_predict)
+    df['prediction'] = df.review.apply(lambda x : inference_bert.predict_sentiment(x, tokenizer, model))
     return df
 
 
