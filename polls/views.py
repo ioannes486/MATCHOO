@@ -30,10 +30,16 @@ def results(request):
         bot_message = recommand_traveling_site(res)
         bot_message = '강남맛집'
         crawl_reviews(bot_message)
-        store_list = to_df().prediction
+        store_list = to_df().store.tolist()
+        reviews_list = to_df().review.tolist()
+        prediction_list = to_df().prediction.tolist()
 
-        context = {'bot_message': bot_message, 
-                   'store_list' : store_list}
+        context = {
+            'bot_message': bot_message, 
+            'store_list' : store_list,
+            'reviews_list' : reviews_list,
+            'prediction_list' : prediction_list
+                   }
 
     
         return render(request, 'polls/results.html', context)

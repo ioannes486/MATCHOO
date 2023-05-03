@@ -115,7 +115,9 @@ def to_df(path='./down_3.0_data.json'):
             review_data.append(json_data[store]['reviews'][j])
 
     df = pd.DataFrame({'store' :name_data, 'review': review_data})
-
+    index = df[df.review.str.len()<=1].index
+    df.drop(index=index, inplace=True)
+    df.reset_index(drop=True)
     
     df['prediction'] = df.review.apply(bert_predict)
     return df
