@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div>
+  <h1>
+    {{ reviews.store  }}
+  </h1>
+</div>
 
-{% for review in reviews %}
+{% for review in reviews.review %}
   <p>{{ review }}</p>
+
 {% empty %}
   <p>리뷰가 없습니다</p>
 {% endfor %}

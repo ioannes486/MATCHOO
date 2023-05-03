@@ -8,6 +8,7 @@ import openai
 from ._crawling import crawl_reviews, to_df
 from django.conf import settings
 import pandas as pd
+import time
 
 from .models import Review
 
@@ -27,6 +28,7 @@ openai.api_key = settings.OPENAI_API_KEY
 openai.api_key = settings.OPENAI_API_KEY
 
 def results(request):
+
     if request.method == 'POST':
         # 요청 받아서 문구 만들기
         res = request.POST
@@ -53,8 +55,12 @@ def results(request):
 
         context = {'bot_message': bot_message, 
                    'store_list' : store_list,}
+        time.sleep(60)
 
         return render(request, 'polls/results.html', context)
+    
+    else:
+        return render(request, 'loading.html')
 
 def vote(request):
     pass
@@ -67,14 +73,19 @@ def store_detail(request):
     for index, row in to_df().iterrows():
         store = row['store']
         review = row['review']
-        review_obj = Review(store=store, review=review)
+        prediction = row['prediction']
+
+        review_obj = Review(store=store, review=review, prediction=prediction)
         review_obj.save()
 
     store = request.GET.get('store')
     reviews = Review.objects.filter(store=store)
     reviews_list = [review.review for review in reviews]
+    
 
-    context = {'reviews': reviews_list}
+    context = {
+        'reviews': reviews,
+               }
 
     return render(request, 'polls/store_detail.html', context)
 
