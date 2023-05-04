@@ -36,6 +36,7 @@ def results(request):
 
 
     if request.method == 'POST':
+        global df
         # 요청 받아서 문구 만들기
         res = request.POST
         bot_message = recommand_traveling_site(res)
@@ -75,7 +76,7 @@ def vote(request):
 def store_detail(request):
 
 # 3안
-    for index, row in to_df().iterrows():
+    for index, row in df.iterrows():
         store = row['store']
         review = row['review']
         prediction = row['prediction']

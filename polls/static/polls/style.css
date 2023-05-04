@@ -39,7 +39,7 @@ h1 {
 }
 
 .intro_bg{
-  background-image: url("https://media.discordapp.net/attachments/1097689297974468654/1097789338227589140/image.png?width=706&height=481") no-repeat;
+  background-image: url("https://media.discordapp.net/attachments/1097689297974468654/1097789338227589140/image.png?width=706&height=481");
   width: 100%;
   height: 100px;
 }
@@ -70,7 +70,7 @@ h1 {
 
 .intro_text{
   width:100%;
-  margin:50px auto 50px auto;
+  margin:20px auto 20px auto;
   text-align: center;
 }
 .intro_text > h1,
