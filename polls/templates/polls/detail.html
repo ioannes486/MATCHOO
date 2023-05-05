@@ -2,56 +2,50 @@
 {% block content %}
 <h1>유형조사</h1>
 
-<fieldset>
-    <legend>
-      <h1>{{question.question_text}}</h1>
-    </legend>
-    {% if error_message %} <p><strong>{{error_message}}</strong></p>{% endif %}
-    {% for choice in question.choice_set.all  %}
-        <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
-        <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br>
-    {% endfor %}
-</fieldset>
-<input type="submit" value="Vote">
-
-
 <form action="{% url 'polls:results' %}" method="post">
     {% csrf_token %}
     <ul>
         <li>
-            Q1
-            <input type="radio" id="a1" name="q1" value="a1" checked>
-            <label for="a1">a1</label>
-            <input type="radio" id="a2" name="q1" value="a2">
-            <label for="a2">a2</label>
+            <p>어떤 여행을 좋아하시나요?</p>
+            <input type="radio" id="y" name="trip" value="동적인 여행을 좋아하" >
+            <label for="y">동적인 여행</label>
+            <input type="radio" id="n" name="trip" value="정적인 여행을 좋아하">
+            <label for="n">정적인 여행</label>
         </li>
         <li>
-            Q2
-            <input type="radio" id="a1" name="q2" value="a1" checked>
-            <label for="a1">a1</label>
-            <input type="radio" id="a2" name="q2" value="a2">
-            <label for="a2">a2</label>
+            <p>도시를 좋아하시나요 자연을 좋아하시나요?</p>
+            <input type="radio" id="city" name="type" value="도심을 좋아하" >
+            <label for="city">도심을 좋아한다</label>
+            <input type="radio" id="nature" name="type" value="자연경관을 좋아하">
+            <label for="nature">자연을 좋아한다</label>
         </li>
         <li>
-            Q3
-            <input type="radio" id="a1" name="q3" value="a1" checked>
-            <label for="a1">a1</label>
-            <input type="radio" id="a2" name="q3" value="a2">
-            <label for="a2">a2</label>
+            <p>어떤 교통수단을 선호하시나요?</p>
+            <p><input type="radio" id="drive" name="movement" value="자가용을 이용하" >
+            <label for="drive">자가용</label>
+            <input type="radio" id="walk" name="movement" value="대중교통 이나 도보를 이용하">
+            <label for="walk">대중교통 이나 도보</label></p>
         </li>
         <li>
-            Q4
-            <input type="radio" id="a1" name="q4" value="a1" checked>
-            <label for="a1">a1</label>
-            <input type="radio" id="a2" name="q4" value="a2">
-            <label for="a2">a2</label>
+            <p>이색적인 여행과 평범한 여행중 어느 것을 선호하시나요?</p>
+            <input type="radio" id="famous" name="pop" value="이색적인 여행을 좋아하" >
+            <label for="famous">이색적인 여행</label>
+            <input type="radio" id="rare" name="pop" value="남들 다 하는 평범한 여행을 좋아하">
+            <label for="rare">평범한 여행</label>
         </li>
         <li>
-            Q5
-            <input type="radio" id="a1" name="q5" value="a1" checked>
-            <label for="a1">a1</label>
-            <input type="radio" id="a2" name="q5" value="a2">
-            <label for="a2">a2</label>
+            <p>혼자하는 여행과 함께하는 여행 중 어떤 것을 선호하시나요? </p>
+            <input type="radio" id="alone" name="with" value="혼자하는 여행" >
+            <label for="alone">혼자하는 여행</label>
+            <input type="radio" id="tog" name="with" value="함께하는 여행을 좋아하">
+            <label for="tog">함께하는 여행</label>
+        </li>
+        <li>
+            <p>북적이는 지역명소 방문과 편안한 휴식 중 어떤 테마를 선호하시나요</p>
+            <p><input type="radio" id="act" name="how" value="지역명소 방문을 좋아" >
+            <label for="act">지역명소 방문</label>
+            <input type="radio" id="rest" name="how" value="편안한 휴식을 좋아">
+            <label for="rest">편안한 휴식</label></p>
         </li>
     </ul>
     <input type="submit" value="제출">

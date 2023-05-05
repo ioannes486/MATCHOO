@@ -19,3 +19,9 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class SurveyResult(models.Model):
+    pop_preference = models.CharField(max_length=50)
+    movement_preference = models.CharField(max_length=50)
+    company_preference = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)

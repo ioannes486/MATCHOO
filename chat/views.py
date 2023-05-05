@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import openai
 
-openai.api_key = 'MY_API_KEY'
+openai.api_key = 'myapi'
 
 def home(request):
     return render(request, 'chat/home.html')
@@ -30,7 +30,6 @@ def generate_text(request):
         assistant_message = completion.choices[0].text.strip()
         messages.append({'role': 'assistant', 'text': assistant_message})
         return JsonResponse({'messages': messages})
-
 
 
 

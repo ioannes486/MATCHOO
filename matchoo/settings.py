@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from . import bert_load
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django_extensions',
     'polls',
-    'chat',
+    #'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,3 +127,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+with open('API_KEY.txt', 'r') as a:
+    api_key = [line.strip('\n') for line in a]
+    print(api_key)
+
+OPENAI_API_KEY = api_key[0]
+KAKAO_API_KEY = api_key[1]
+
+MODEL_KOBERT = bert_load.create_bert_model()
+TOKENIZER_KOBERT = bert_load.load_bert_tokenizer()
+
+
+

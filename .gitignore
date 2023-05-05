@@ -7,8 +7,8 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+# db.sqlite3
+# db.sqlite3-journal
 media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
@@ -67,6 +67,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+API_KEY.txt
 
 # Translations
 *.mo
@@ -275,4 +276,6 @@ pyrightconfig.json
 pyvenv.cfg
 pip-selfcheck.json
 
+API_KEY.txt
+best_kobert_weights.h5
 # End of https://www.toptal.com/developers/gitignore/api/python,django,venv
