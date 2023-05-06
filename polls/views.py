@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import csrf_exempt 
 import json
 import openai
 from ._crawling import crawl_reviews, to_df
@@ -18,6 +19,7 @@ def index(request):
     
 
     
+csrf_exempt
 def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
@@ -57,6 +59,7 @@ def results(request):
         
 
         return render(request, 'polls/results.html', context)
+    
 def vote(request):
     pass
 

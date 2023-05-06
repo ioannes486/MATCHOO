@@ -1,53 +1,174 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>유형조사</h1>
+<!DOCTYPE HTML>
+{% load static %}
+{% csrf_token %}
+<html>
+	<head>
+		<title>MATCHOO</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'polls/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="polls/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-<form action="{% url 'polls:results' %}" method="post">
-    {% csrf_token %}
-    <ul>
-        <li>
-            <p>어떤 여행을 좋아하시나요?</p>
-            <input type="radio" id="y" name="trip" value="동적인 여행을 좋아하" >
-            <label for="y">동적인 여행</label>
-            <input type="radio" id="n" name="trip" value="정적인 여행을 좋아하">
-            <label for="n">정적인 여행</label>
-        </li>
-        <li>
-            <p>도시를 좋아하시나요 자연을 좋아하시나요?</p>
-            <input type="radio" id="city" name="type" value="도심을 좋아하" >
-            <label for="city">도심을 좋아한다</label>
-            <input type="radio" id="nature" name="type" value="자연경관을 좋아하">
-            <label for="nature">자연을 좋아한다</label>
-        </li>
-        <li>
-            <p>어떤 교통수단을 선호하시나요?</p>
-            <p><input type="radio" id="drive" name="movement" value="자가용을 이용하" >
-            <label for="drive">자가용</label>
-            <input type="radio" id="walk" name="movement" value="대중교통 이나 도보를 이용하">
-            <label for="walk">대중교통 이나 도보</label></p>
-        </li>
-        <li>
-            <p>이색적인 여행과 평범한 여행중 어느 것을 선호하시나요?</p>
-            <input type="radio" id="famous" name="pop" value="이색적인 여행을 좋아하" >
-            <label for="famous">이색적인 여행</label>
-            <input type="radio" id="rare" name="pop" value="남들 다 하는 평범한 여행을 좋아하">
-            <label for="rare">평범한 여행</label>
-        </li>
-        <li>
-            <p>혼자하는 여행과 함께하는 여행 중 어떤 것을 선호하시나요? </p>
-            <input type="radio" id="alone" name="with" value="혼자하는 여행" >
-            <label for="alone">혼자하는 여행</label>
-            <input type="radio" id="tog" name="with" value="함께하는 여행을 좋아하">
-            <label for="tog">함께하는 여행</label>
-        </li>
-        <li>
-            <p>북적이는 지역명소 방문과 편안한 휴식 중 어떤 테마를 선호하시나요</p>
-            <p><input type="radio" id="act" name="how" value="지역명소 방문을 좋아" >
-            <label for="act">지역명소 방문</label>
-            <input type="radio" id="rest" name="how" value="편안한 휴식을 좋아">
-            <label for="rest">편안한 휴식</label></p>
-        </li>
-    </ul>
-    <input type="submit" value="제출">
-</form>
-{% endblock content %}
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="{% url 'polls:main' %}" class="logo">TEAM_MATCHOO</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="{% url 'polls:main' %}">Home</a></li>
+							<li class="active"><a href="">여행지 추천 받기</a></li>
+							<li><a href="elements.html">결과</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
+						{% csrf_token %}
+							<section class="post">
+								<header class="major">
+									<span class="date">May 8, 2023</span>
+									<h1>여행지 추천 받기!<br /></h1>
+									<h4>For your wonderful life</h4>
+									<p>설문조사 후 제출을 하면<br />
+									성향에 맞는 여행지를 추천해드려요!<br />
+									</p>
+								</header>
+								<!-- <h1>유형조사</h1> -->
+
+								<form action="{% url 'polls:results' %}" method="post">
+									{% csrf_token %}
+									<ul>
+										<li>
+											<p>어떤 여행을 좋아하시나요?</p>
+											<input type="radio" id="y" name="trip" value="동적인 여행을 좋아하" checked>
+											<label for="y">동적인 여행</label>
+											<input type="radio" id="n" name="trip" value="정적인 여행을 좋아하">
+											<label for="n">정적인 여행</label>
+										</li>
+										<li>
+											<p>도시를 좋아하시나요 자연을 좋아하시나요?</p>
+											<input type="radio" id="city" name="type" value="도심을 좋아하" checked>
+											<label for="city">도심을 좋아한다</label>
+											<input type="radio" id="nature" name="type" value="자연경관을 좋아하">
+											<label for="nature">자연을 좋아한다</label>
+										</li>
+										<li>
+											<p>어떤 교통수단을 선호하시나요?</p>
+											<p><input type="radio" id="drive" name="movement" value="자가용을 이용하" checked>
+											<label for="drive">자가용</label>
+											<input type="radio" id="walk" name="movement" value="대중교통 이나 도보를 이용하">
+											<label for="walk">대중교통 이나 도보</label></p>
+										</li>
+										<li>
+											<p>이색적인 여행과 평범한 여행중 어느 것을 선호하시나요?</p>
+											<input type="radio" id="famous" name="pop" value="이색적인 여행을 좋아하" checked>
+											<label for="famous">이색적인 여행</label>
+											<input type="radio" id="rare" name="pop" value="남들 다 하는 평범한 여행을 좋아하">
+											<label for="rare">평범한 여행</label>
+										</li>
+										<li>
+											<p>혼자하는 여행과 함께하는 여행 중 어떤 것을 선호하시나요? </p>
+											<input type="radio" id="alone" name="with" value="혼자하는 여행" checked>
+											<label for="alone">혼자하는 여행</label>
+											<input type="radio" id="tog" name="with" value="함께하는 여행을 좋아하">
+											<label for="tog">함께하는 여행</label>
+										</li>
+										<li>
+											<p>북적이는 지역명소 방문과 편안한 휴식 중 어떤 테마를 선호하시나요</p>
+											<p><input type="radio" id="act" name="how" value="지역명소 방문을 좋아" checked>
+											<label for="act">지역명소 방문</label>
+											<input type="radio" id="rest" name="how" value="편안한 휴식을 좋아">
+											<label for="rest">편안한 휴식</label></p>
+										</li>
+									</ul>
+									<input type="submit" value="제출">
+								</form>
+
+								<p>여행은 사람을 즐겁게 만든다</p>
+								<p>Life is Good </p>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						{% csrf_token %}
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://twitter.com/?lang=ko" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://ko-kr.facebook.com/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

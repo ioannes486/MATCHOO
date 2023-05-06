@@ -1,8 +1,143 @@
-{% extends 'base.html' %}
+<!DOCTYPE HTML>
 {% load static %}
-{% block content %}
-<h1></h1>
+{% csrf_token %}
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MATCHOO</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'polls/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="polls/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-<link rel="stylesheet" href="{% static 'polls/style.css' %}">
-<a href="{% url 'polls:detail' %}">추천받기</a>
-{% endblock content %}
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>MATCHOO<br /> 
+						사용자 설문 기반 맛집 추천 서비스</h1>						
+																		<!-- 이동 시키고 싶은 링크로 변환 (삭제 가능) -->
+						<p>여행지 추천 및 맛집 추천 서비스를 받아보세요!</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="{% url 'polls:main' %}" class="logo">Team_MATCHOO</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="">Home</a></li>
+							<li><a href="detail">여행지 추천받기</a></li>
+							{% comment %} 결과창에 새로운 html 하나 넣고싶은데 마땅히 생각나는게 없어서 지금은 404오류가 남. {% endcomment %}
+							<li><a href="elements">결과</a></li>
+							
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/?lang=ko" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://ko-kr.facebook.com/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.instagram.com/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span class="date">May 8, 2023</span>
+									<a href="#" class="image main"><img src="{% static 'polls/images/matchoolog.png' %}" alt="Matchoo" /></a >
+									<!-- <h2><a href="#">What is MATCHOO?<br /> -->
+									</a></h2>
+									<p>사용자 설문 기반 여행지 추천 & 주변 지역 맛집 추천서비스</p>
+								</header>
+								<ul class="actions special">
+									<li><a href="detail" class="button large">설문조사 Go!</a></li>
+								</ul>
+							</article>
+
+						
+
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="https://twitter.com/?lang=ko" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://ko-kr.facebook.com/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="https://github.com/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'polls/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/util.js' %}"></script>
+			<script src="{% static 'polls/assets/js/main.js' %}"></script>
+
+	</body>
+</html>
