@@ -71,17 +71,9 @@ def results(request):
 
 
 def store_detail(request):
-    for index, row in df.iterrows():
-        store = row['store']
-        review = row['review']
-        prediction = row['prediction']
-
-        review_obj = Review(store=store, review=review, prediction=prediction)
-        review_obj.save()
 
     store = request.GET.get('store')
     reviews = Review.objects.filter(store=store)
-    reviews_list = [review.review for review in reviews]
 
     # 가게 이름 가져오기
     store_name = df[df['store']==store]['store'].iloc[0]

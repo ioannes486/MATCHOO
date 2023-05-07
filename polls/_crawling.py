@@ -7,6 +7,7 @@ from django.conf import settings
 
 from ._preprocess import driver, get_reviews, get_stars, append_to_list, unfold
 from . import inference_bert
+from . models import Review
 
 tokenizer = settings.TOKENIZER_KOBERT
 model = settings.MODEL_KOBERT
@@ -120,6 +121,17 @@ def to_df(path='./down_3.0_data.json'):
     df.reset_index(drop=True)
     
     df['prediction'] = df.review.apply(lambda x : inference_bert.predict_sentiment(x, tokenizer, model))
+
+    for index, row in df.iterrows():
+        store = row['store']
+        review = row['review']
+        prediction = row['prediction']
+
+        review_obj, created = Review.objects.get_or_create(store=store, review=review, prediction=prediction)
+        if not created:
+            review_obj.save()
+        else:
+            pass
     return df
 
 

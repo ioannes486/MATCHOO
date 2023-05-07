@@ -140,7 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 with open('API_KEY.txt', 'r') as a:
     api_key = [line.strip('\n') for line in a]
-    print(api_key)
 
 OPENAI_API_KEY = api_key[0]
 KAKAO_API_KEY = api_key[1]
