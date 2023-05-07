@@ -25,11 +25,8 @@ def index(request):
 def detail(request):
     return render(request, "polls/detail.html", {"title": 'question'})
 
-# 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
-openai.api_key = settings.OPENAI_API_KEY
-openai.api_key = settings.OPENAI_API_KEY
 
-
+openai.api_key = settings.OPENAI_API_KEY
 
 def results(request):
 
@@ -94,6 +91,4 @@ def store_detail(request):
     return render(request, 'polls/store_detail.html', context)
 
 
-def give_survey(request):
-    return render(request, 'give_survey.html')
 

@@ -2224,7 +2224,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #212931;
+			background-color: #ffb4bf;
 			box-shadow: none;
 			color: #ffffff !important;
 		}
@@ -3233,9 +3233,9 @@ input, select, textarea {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: #212931;
+		background-color: #ffb4bf;
 		/* 배경 사진 설정하는 코드 */
-		background-image: url("polls/images/matchoolog.png"), linear-gradient(0deg, #ffb4bf, #ffb4bf9f), url("polls/images/matchoolog.png");
+		background-image: url("polls/images/matchoolog2.png"), linear-gradient(0deg, #ffb4bf, #ffb4bf), url("polls/images/matchoolog2.png");
 		background-size: auto,								auto,														100% auto;
 		background-position: center,								center,														top center;
 		background-repeat: repeat,								no-repeat,													no-repeat;
@@ -4528,7 +4528,7 @@ input, select, textarea {
 		#navPanelToggle.alt {
 			background-color: rgba(255, 255, 255, 0.875);
 			box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
-			color: #212931;
+			color: #ffb4bf;
 		}
 
 			#navPanelToggle.alt:hover {
@@ -4565,7 +4565,7 @@ input, select, textarea {
 		-webkit-overflow-scrolling: touch;
 		background: #ffffff;
 		box-shadow: none;
-		color: #212931;
+		color: #ffb4bf ;
 		height: 100%;
 		max-width: 80%;
 		overflow-y: auto;
