@@ -1,53 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>유형조사</h1>
+<link rel="stylesheet" href="{% static 'polls/styles.css' %}">
+<div class='detail'>
+<div class='container' style="padding-top: 70px;">
+    <div class="text-center">
+        <h1>나의 여행 유형 TEST✔️</h1>
+    </div>
 
-<form action="{% url 'polls:results' %}" method="post">
-    {% csrf_token %}
-    <ul>
-        <li>
-            <p>어떤 여행을 좋아하시나요?</p>
-            <input type="radio" id="y" name="trip" value="동적인 여행을 좋아하" >
-            <label for="y">동적인 여행</label>
-            <input type="radio" id="n" name="trip" value="정적인 여행을 좋아하">
-            <label for="n">정적인 여행</label>
-        </li>
-        <li>
-            <p>도시를 좋아하시나요 자연을 좋아하시나요?</p>
-            <input type="radio" id="city" name="type" value="도심을 좋아하" >
-            <label for="city">도심을 좋아한다</label>
-            <input type="radio" id="nature" name="type" value="자연경관을 좋아하">
-            <label for="nature">자연을 좋아한다</label>
-        </li>
-        <li>
-            <p>어떤 교통수단을 선호하시나요?</p>
-            <p><input type="radio" id="drive" name="movement" value="자가용을 이용하" >
-            <label for="drive">자가용</label>
-            <input type="radio" id="walk" name="movement" value="대중교통 이나 도보를 이용하">
-            <label for="walk">대중교통 이나 도보</label></p>
-        </li>
-        <li>
-            <p>이색적인 여행과 평범한 여행중 어느 것을 선호하시나요?</p>
-            <input type="radio" id="famous" name="pop" value="이색적인 여행을 좋아하" >
-            <label for="famous">이색적인 여행</label>
-            <input type="radio" id="rare" name="pop" value="남들 다 하는 평범한 여행을 좋아하">
-            <label for="rare">평범한 여행</label>
-        </li>
-        <li>
-            <p>혼자하는 여행과 함께하는 여행 중 어떤 것을 선호하시나요? </p>
-            <input type="radio" id="alone" name="with" value="혼자하는 여행" >
-            <label for="alone">혼자하는 여행</label>
-            <input type="radio" id="tog" name="with" value="함께하는 여행을 좋아하">
-            <label for="tog">함께하는 여행</label>
-        </li>
-        <li>
-            <p>북적이는 지역명소 방문과 편안한 휴식 중 어떤 테마를 선호하시나요</p>
-            <p><input type="radio" id="act" name="how" value="지역명소 방문을 좋아" >
-            <label for="act">지역명소 방문</label>
-            <input type="radio" id="rest" name="how" value="편안한 휴식을 좋아">
-            <label for="rest">편안한 휴식</label></p>
-        </li>
-    </ul>
-    <input type="submit" value="제출">
+    <div class='test row text-center'>
+    <form action="{% url 'polls:results' %}" method="post">
+        {% csrf_token %}
+        <ul class='question' style='list-style: none;'>
+            <li>
+                <p><h4>어떤 여행을 좋아하시나요?</h4></p>
+                <input type="radio" id="y" name="trip" value="동적인 여행을 좋아하" >
+                <label for="y">🏃🏻‍♀️동적인 여행🏃🏻‍♂️</label>
+                <input type="radio" id="n" name="trip" value="정적인 여행을 좋아하">
+                <label for="n">🧘🏻‍♀️정적인 여행🧘🏻‍♂️</label>
+            </li>
+            <br>
+            <li>
+                <p><h4>도시를 좋아하시나요 자연을 좋아하시나요?</h4></p>
+                <input type="radio" id="city" name="type" value="도심을 좋아하" >
+                <label for="city">🌆도심속 여행</label>
+                <input type="radio" id="nature" name="type" value="자연경관을 좋아하">
+                <label for="nature">자연속 여행🏕️</label>
+            </li>
+            <br>
+            <li>
+                <p><h4>어떤 교통수단을 선호하시나요?</h4></p>
+                <p><input type="radio" id="drive" name="movement" value="자가용을 이용하" >
+                <label for="drive">🚗자가용</label>
+                <input type="radio" id="walk" name="movement" value="대중교통 이나 도보를 이용하">
+                <label for="walk">도보/대중교통🚌</label></p>
+            </li>
+            <br>
+            <li>
+                <p><h4>이색적인 여행과 평범한 여행중 어느 것을 선호하시나요?</h4></p>
+                <input type="radio" id="famous" name="pop" value="이색적인 여행을 좋아하" >
+                <label for="famous">🆕이색적인 여행</label>
+                <input type="radio" id="rare" name="pop" value="남들 다 하는 평범한 여행을 좋아하">
+                <label for="rare">평범한 여행🧳</label>
+            </li>
+            <br>
+            <li>
+                <p><h4>혼자하는 여행과 함께하는 여행 중 어떤 것을 선호하시나요? </h4></p>
+                <input type="radio" id="alone" name="with" value="혼자하는 여행" >
+                <label for="alone">🧍🏻‍♀️혼자하는 여행</label>
+                <input type="radio" id="tog" name="with" value="함께하는 여행을 좋아하">
+                <label for="tog">함께하는 여행👨‍👩‍👧‍👦</label>
+            </li>
+            <br>
+            <li>
+                <p><h4>북적이는 지역명소 방문과 편안한 휴식 중 어떤 테마를 선호하시나요</h4></p>
+                <p><input type="radio" id="act" name="how" value="지역명소 방문을 좋아" >
+                <label for="act">🗽지역명소 방문</label>
+                <input type="radio" id="rest" name="how" value="편안한 휴식을 좋아">
+                <label for="rest">편안한 휴식😌</label></p>
+            </li>
+        </ul>
+</div>
+    <input type="submit" value="제출" class="btn btn-primary btn-xl text-uppercase">
 </form>
+</div>
+</div>
 {% endblock content %}

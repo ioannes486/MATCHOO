@@ -4,6 +4,7 @@ import pandas as pd
 import json
 import time
 from django.conf import settings
+from .models import Review
 
 from ._preprocess import driver, get_reviews, get_stars, append_to_list, unfold
 from . import inference_bert
@@ -117,9 +118,21 @@ def to_df(path='./down_3.0_data.json'):
     df = pd.DataFrame({'store' :name_data, 'review': review_data})
     index = df[df.review.str.len()<=1].index
     df.drop(index=index, inplace=True)
+    df.drop_duplicates(subset='review', inplace=True)
     df.reset_index(drop=True)
     
     df['prediction'] = df.review.apply(lambda x : inference_bert.predict_sentiment(x, tokenizer, model))
+
+    for index, row in df.iterrows():
+        store = row['store']
+        review = row['review']
+        prediction = row['prediction']
+
+        review_obj, created = Review.objects.get_or_create(store=store, review=review, prediction=prediction)
+        if not created:
+            review_obj.save()
+        else:
+            pass
     return df
 
 

@@ -76,20 +76,15 @@ def vote(request):
 def store_detail(request):
 
 # 3안
-    for index, row in df.iterrows():
-        store = row['store']
-        review = row['review']
-        prediction = row['prediction']
 
-        review_obj = Review(store=store, review=review, prediction=prediction)
-        review_obj.save()
 
     store = request.GET.get('store')
-    reviews = Review.objects.filter(store=store)
-    reviews_list = [review.review for review in reviews]
+    reviews = Review.objects.filter(store=store)  # .distinct('review')
+    # reviews_list = [review.review for review in reviews]
     
 
-    context = {
+    context = { 
+        'store':store,
         'reviews': reviews,
                }
 

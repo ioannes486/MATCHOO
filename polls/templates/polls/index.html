@@ -2,7 +2,15 @@
 {% load static %}
 {% block content %}
 <h1></h1>
-
-<link rel="stylesheet" href="{% static 'polls/style.css' %}">
-<a href="{% url 'polls:detail' %}">추천받기</a>
+<link rel="stylesheet" href="{% static 'polls/styles.css' %}">
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">당신의 완벽한 여행을 위한 최적의 추천 플랫폼,</div>
+        <div class="masthead-heading text-uppercase">MATCHOO</div>
+        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'polls:detail' %}">추천 받기</a>
+    </div>
+</header>
+{% comment %} 
+<a href="{% url 'polls:detail' %}">추천받기</a> {% endcomment %}
 {% endblock content %}

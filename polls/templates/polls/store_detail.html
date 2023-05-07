@@ -3,16 +3,45 @@
 {% block content %}
 <div>
   <h1>
-    {{ reviews.store  }}
+    {{ store  }}
   </h1>
 </div>
 
-{% for review in reviews.review %}
-  <p>{{ review }}</p>
+<div>
+  <h2>긍정리뷰</h2>
+  <fieldset>
+    {% for review in reviews %}
+      <p>
+        {% if review.prediction == '긍정' %}
+        {{ review.review }} 👍🏻
+        {% endif %}
+      </p>
+    {% empty %}
+      <p>긍정리뷰가 없습니다</p>
+    {% endfor %}
+  </fieldset>
+</div>
 
-{% empty %}
-  <p>리뷰가 없습니다</p>
-{% endfor %}
+<br>
+<hr>
+
+<div>
+  <h2>부정리뷰</h2>
+  <fieldset>
+    {% for review in reviews %}
+    <p>
+      {% if review.prediction == '부정' %}
+      {{ review.review }} 👎🏻
+      {% endif %}
+    </p>
+    {% empty %}
+    <p>부정리뷰가 없습니다</p>
+    {% endfor %}
+  </fieldset>
+</div>
+
+
+
 
 
 
