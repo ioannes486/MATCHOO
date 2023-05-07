@@ -9,6 +9,10 @@ import openai
 from ._crawling import crawl_reviews, to_df
 from ._chat import recommand_traveling_site
 from django.conf import settings
+import pandas as pd
+import time
+
+from .models import Review
 
 def index(request):
     context = {"title": 'Home'}
@@ -23,13 +27,16 @@ def detail(request):
 
 # 이거 꼭 바꿔라!!!!!!!!!!!!! 안바꾸면 3대멸망 아래로 3대임 내 대는 아님
 openai.api_key = settings.OPENAI_API_KEY
+openai.api_key = settings.OPENAI_API_KEY
 
 
-@cache_page(60 * 15) # 15분 동안 캐시를 유지합니다
+
 def results(request):
 
 
+
     if request.method == 'POST':
+        global df
         # 요청 받아서 문구 만들기
         res = request.POST
         bot_message = recommand_traveling_site(res)
@@ -57,6 +64,36 @@ def results(request):
         
 
         return render(request, 'polls/results.html', context)
-def vote(request):
-    pass
+    
+    else:
+        return render(request, 'loading.html')
+
+
+
+def store_detail(request):
+    for index, row in df.iterrows():
+        store = row['store']
+        review = row['review']
+        prediction = row['prediction']
+
+        review_obj = Review(store=store, review=review, prediction=prediction)
+        review_obj.save()
+
+    store = request.GET.get('store')
+    reviews = Review.objects.filter(store=store)
+    reviews_list = [review.review for review in reviews]
+
+    # 가게 이름 가져오기
+    store_name = df[df['store']==store]['store'].iloc[0]
+
+    context = {
+        'store': store_name,
+        'reviews': reviews,
+    }
+
+    return render(request, 'polls/store_detail.html', context)
+
+
+def give_survey(request):
+    return render(request, 'give_survey.html')
 

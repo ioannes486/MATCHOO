@@ -123,9 +123,4 @@ def to_df(path='./down_3.0_data.json'):
     return df
 
 
-if __name__ == '__main__':
-    print(crawl_reviews('강남맛집'))
-    print(to_df())
-    #crawl_reviews('강남맛집')
 
-# 후속과제 : 리뷰가 없거나 짧을 경우 크롤링 하지 않게 만들기, 리뷰 개수 늘리기

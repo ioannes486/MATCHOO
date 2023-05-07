@@ -1,45 +1,89 @@
-{% extends 'base.html' %}
+<!DOCTYPE HTML>
 {% load static %}
-{% block content %}
-​
-<a href="{% url 'polls:detail' %}">Vote again?</a><br>
-<link rel="stylesheet" href="{% static 'polls/style.css' %}">
-<div class="wrap">
-    <div class="intro_bg">
-      <div class="intro_text">
-        <h1>MatChoo</h1>
-        <h4 class="contents1">당신의 성향에 알맞은 여행지를 추천해드려요!</h4>
-​
-    </div>
-    </div>
-    <!-- intro end-->
-​
-    <ul class="amount">
-      <li>
-        <div>
-          <div class="contents1">당신에게 추천된 지역은 <h1 style="display:inline">{{bot_message}}</h1> 입니다</div>
-          <div class="result">  </div>
-        </div>
-      </li>
-    </ul>
-    <!-- result end -->
-​
-    <div class="main_text0">
-      <div class="contents1_bold">{{bot_message}}의 맛집을 확인해보세요!</div>
-      <div class="contents2">
-        {% for store in store_list %}
-            <li>{{store}}</li>
-            <input id='review' type='button' onclick='newPage()' value='리뷰 확인하기' />
-        {%endfor%}
-      </div>
-    </div>
-​
-​
-    <div class="footer">
-      <div>
-        {{ df_html | safe}}
-        <!--챗봇 심기 / 아니면 없애고-->
-      </div>
-    </div>
-  </div>
-{% endblock content %}
+{% csrf_token %}
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MATCHOO</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'polls/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="polls/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index" class="logo">MATCHOO</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="{% url 'polls:main' %}">Home</a></li>
+							<li><a href="{% url 'polls:detail' %}">여행지 추천받기</a></li>
+							<li class="active"><a href="">결과</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://twitter.com/?lang=ko" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://ko-kr.facebook.com/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="https://www.instagram.com/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<div class="contents1"> 당신에게 추천된 지역은 <h1 style="display:inline">{{bot_message}}</h1> 입니다</div>
+									<br>
+									<br>
+									<br>								
+									<div class="result">  </div>
+									
+									<div class="main_text0">
+										<div class="contents1_bold">{{bot_message}}의 맛집을 확인해보세요!</div>
+										<div class="contents2">
+											{% for store in store_list %}
+												<li>{{store}}</li>
+												<button id="new-page-button-{{forloop.counter}}">리뷰 확인하기</button>
+												<script>
+													document.getElementById("new-page-button-{{forloop.counter}}").addEventListener("click", function() {
+														var storeName = "{{ store }}";
+														window.open(`/store_detail/?store=${storeName}`, "_blank");
+													});
+											</script>
+											{% endfor %}
+									</div>
+									</div>
+								​
+								​
+									{% comment %} <div class="footer">
+									<div>
+									{{ df_html | safe}}
+									<!--챗봇 심기 / 아니면 없애고-->
+									</div>
+									</div>
+									</div> {% endcomment %}
+								
+
+		<!-- Scripts -->
+			<script src="{% static 'polls/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'polls/assets/js/util.js' %}"></script>
+			<script src="{% static 'polls/assets/js/main.js' %}"></script>
+	</body>
+</html>
