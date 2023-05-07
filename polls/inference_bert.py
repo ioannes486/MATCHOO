@@ -18,7 +18,6 @@ def predict_sentiment(sentence, tokenizer, model):
     new_inputs = (token_ids, token_masks, token_segments)
 
     prediction = model.predict(new_inputs)
-    #predicted_probability = np.round(np.max(prediction) * 100, 2)
     predicted_class = ['부정', '긍정'][np.argmax(prediction, axis=1)[0]]
 
     return predicted_class

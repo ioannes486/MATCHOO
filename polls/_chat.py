@@ -13,7 +13,7 @@ def recommand_traveling_site(res):
     completion = openai.Completion.create(
         model='text-davinci-003',
         prompt='\n'.join([f'{m["role"]}: {m["text"]}' for m in messages]),
-        temperature=0, # 얼마나 자연스럽게 답을 줄건지에 대해 높을수록 자연스러운 대화 가능
+        temperature=0, # 높을수록 창의성↑
         max_tokens=1024,
         n=1,
         stop=None,
@@ -22,6 +22,6 @@ def recommand_traveling_site(res):
     assistant_message = completion.choices[0].text.strip()
     messages.append({'role': 'assistant', 'text': assistant_message})
     bot_message = messages[1]['text'].strip('!')
-    #bot_message = '강남맛집'
+
 
     return bot_message

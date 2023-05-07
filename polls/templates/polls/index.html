@@ -20,15 +20,23 @@
 			<div id="wrapper" class="fade-in">
 
 				<!-- Intro -->
-					<div id="intro">
-						<h1>MATCHOO<br /> 
-						사용자 설문 기반 맛집 추천 서비스</h1>						
-																		<!-- 이동 시키고 싶은 링크로 변환 (삭제 가능) -->
-						<p>여행지 추천 및 맛집 추천 서비스를 받아보세요!</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
+				<div id="intro">
+					<div class="logo" style="margin-bottom: 5rem;">
+					<a href="{% url 'polls:index' %}">
+						{{ store }}
+					</a>
 					</div>
+					<h1>MATCHOO<br /> 
+					사용자 설문 기반 여행지 및 맛집 추천 서비스
+					</h1>						
+					<p>여행지 추천 및 맛집 추천 서비스를 받아보세요!</p>
+					<ul class="actions">
+					<li>
+						<a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a>
+					</li>
+					</ul>
+				</div>
+
 
 				<!-- Header -->
 					<header id="header">
@@ -41,7 +49,7 @@
 							<li class="active"><a href="">Home</a></li>
 							<li><a href="detail">여행지 추천받기</a></li>
 							{% comment %} 결과창에 새로운 html 하나 넣고싶은데 마땅히 생각나는게 없어서 지금은 404오류가 남. {% endcomment %}
-							<li><a href="elements">결과</a></li>
+							<li><a href="give_survey.html">결과</a></li>
 							
 						</ul>
 						<ul class="icons">
@@ -122,12 +130,6 @@
 							</section>
 						</section>
 					</footer>
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
-
 			</div>
 
 		<!-- Scripts -->

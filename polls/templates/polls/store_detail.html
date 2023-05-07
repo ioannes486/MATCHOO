@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+{% load static %}
+{% csrf_token %}
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MATCHOO</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'polls/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="polls/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+    <div id="wrapper">
+
+        <header id="header">
+          <a href="https://www.google.com/search?q={{ store }}" class="logo">{{ store }}</a>
+        </header>
+      
+
+
+<!-- Nav -->
+        <nav id="nav" style="margin-bottom: 50px;">
+          <ul class="links">
+            <li><a href="index">Home</a></li>
+            <li><a href="generic.html">여행지 추천받기</a></li>
+            <li class="active"><a href="results.html">결과</a></li>
+          </ul>
+          <ul class="icons">
+            <li><a href="https://twitter.com/?lang=ko" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="https://ko-kr.facebook.com/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="https://www.instagram.com/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="https://github.com/" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+          </ul>
+        </nav>
+
+        
+        <!-- Main -->
+        <style>
+          h1, h2 {
+            color: white;
+          }
+        
+          .box-wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+          }
+                      
+          .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: calc(50% - 20px); /* 10px는 박스 사이의 간격 */
+            margin-bottom: 20px;
+          }
+                      
+          .box h2 {
+            margin: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            color: white;
+          }
+                      
+          .box p {
+            margin: 0;
+            color: white;
+          }
+        </style>
+            
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              긍정리뷰
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              부정리뷰</h2>
+            <div class="box-wrapper">
+              <div class="box">
+                {% for review in reviews %}
+                  {% if review.prediction == '긍정' %}
+                    <p>{{ review.review }} 👍🏻</p>
+                  {% endif %}
+                {% empty %}
+                  <p>긍정리뷰가 없습니다</p>
+                {% endfor %}
+              </div>
+
+              <div class="box">
+                {% for review in reviews %}
+                  {% if review.prediction == '부정' %}
+                    <p>{{ review.review }} 👎🏻</p>
+                  {% endif %}
+                {% empty %}
+                  <p>부정리뷰가 없습니다</p>
+                {% endfor %}
+              </div>
+            </div>
+
+      
+              
+		<!-- Scripts -->
+      <script src="{% static 'polls/assets/js/jquery.min.js' %}"></script>
+      <script src="{% static 'polls/assets/js/jquery.scrollex.min.js' %}"></script>
+      <script src="{% static 'polls/assets/js/jquery.scrolly.min.js' %}"></script>
+      <script src="{% static 'polls/assets/js/browser.min.js' %}"></script>
+      <script src="{% static 'polls/assets/js/breakpoints.min.js' %}"></script>
+      <script src="{% static 'polls/assets/js/util.js' %}"></script>
+      <script src="{% static 'polls/assets/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -54,10 +54,16 @@
 									<div class="main_text0">
 										<div class="contents1_bold">{{bot_message}}의 맛집을 확인해보세요!</div>
 										<div class="contents2">
-										{% for store in store_list %}
-										<li>{{store}}</li>
-										<input id='store' type='button' onclick='newPage()' value='리뷰 확인하기' /> 
-										{%endfor%} 
+											{% for store in store_list %}
+												<li>{{store}}</li>
+												<button id="new-page-button-{{forloop.counter}}">리뷰 확인하기</button>
+												<script>
+													document.getElementById("new-page-button-{{forloop.counter}}").addEventListener("click", function() {
+														var storeName = "{{ store }}";
+														window.open(`/store_detail/?store=${storeName}`, "_blank");
+													});
+											</script>
+											{% endfor %}
 									</div>
 									</div>
 								​
