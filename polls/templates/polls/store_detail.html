@@ -44,78 +44,75 @@
         <!-- Main -->
         <style>
           h1, h2 {
-            color: white;
+            color: black;
           }
-        
-          .box-wrapper {
-            display: flex;
-            justify-content: space-center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-          }
-        
-          .box {
-            border: 1px solid #ccc;
-            padding: 15px;
-            width: calc(45% - 10px); /* 10px는 박스 사이의 간격 */
-            margin-bottom: 50px;
-            margin-left: 20px;
-            text-align: left;
-          } 
-
-        
           .box h2 {
             margin: 0;
             text-align: center;
             font-size: 1.5rem;
-            color: white;
+            color: black;
           }
         
           .box p {
             margin: 1;
             color: black;
           }
+          div {
+            margin: 10px;
+          }
+          div.board {
+            width: 48%;
+            float: left;
+            background: white;
+            border-radius: 20px;
+            {% comment %} box-sizing: border-box; {% endcomment %}
 
+          }
+            {% comment %} box-sizing: border-box; {% endcomment %}
+
+          div.review {
+            width: 90%;
+            background: #f6f6f6;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            float: center;
+          }
+          }
         </style>
 
+<div class='white'>
+<div class='board' style="padding:30px"; float: "left";>
+    <h2>긍정리뷰</h2>
+    {% for review in reviews %}
+    
+      {% if review.prediction == '긍정' %}
+        <div class="review">
+          {{ review.review }} 👍🏻
+        </div>
+      {% endif %}
+      {% empty %}
+        <p>긍정리뷰가 없습니다</p>
+    {% endfor %}
+</div>
 
-        <span style="display: inline-block;" >
-          <h2>긍정리뷰</h2>
-        <div class="box-wrapper">
-          <float: left;
-          class="box">
-            {% for review in reviews %}
-              {% if review.prediction == '긍정' %}
-                <p>{{ review.review }} 👍🏻</p>
-              {% endif %}
-            {% empty %}
-              <p>긍정리뷰가 없습니다</p>
-            {% endfor %}
-          </float:>
-        </span>
-        
-
-
-        <span style="display: inline-block;" >
-            <h2>부정리뷰</h2>
-          <div class="box-wrapper">
-            <float: right;
-            class="box">
-              {% for review in reviews %}
-                {% if review.prediction == '부정' %}
-                  <p>{{ review.review }} 👎🏻</p>
-                {% endif %}
-              {% empty %}
-                <p>부정리뷰가 없습니다</p>
-              {% endfor %}
-            </float:>
-          </span>
-          
+<div class='board' style="padding:30px"; float: "right";>
+    <h2>부정리뷰</h2>
+    {% for review in reviews %}
+    
+      {% if review.prediction == '부정' %} 
+        <div class="review">
+          {{ review.review }} 👎🏻
+        </div>
+      {% endif %}
+    
+    {% empty %}
+      <p>부정리뷰가 없습니다</p>
+    {% endfor %}
+</div>
+</div>
 
 
-      
-              
 		<!-- Scripts -->
       <script src="{% static 'polls/assets/js/jquery.min.js' %}"></script>
       <script src="{% static 'polls/assets/js/jquery.scrollex.min.js' %}"></script>
