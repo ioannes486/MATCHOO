@@ -49,57 +49,70 @@
         
           .box-wrapper {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-center;
+            align-items: center;
             flex-wrap: wrap;
             margin-bottom: 20px;
           }
-                      
+        
           .box {
             border: 1px solid #ccc;
-            padding: 10px;
-            width: calc(50% - 20px); /* 10px는 박스 사이의 간격 */
-            margin-bottom: 20px;
-          }
-                      
+            padding: 15px;
+            width: calc(45% - 10px); /* 10px는 박스 사이의 간격 */
+            margin-bottom: 50px;
+            margin-left: 20px;
+            text-align: left;
+          } 
+
+        
           .box h2 {
             margin: 0;
             text-align: center;
             font-size: 1.5rem;
             color: white;
           }
-                      
+        
           .box p {
-            margin: 0;
-            color: white;
+            margin: 1;
+            color: black;
           }
-        </style>
-            
-            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              긍정리뷰
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              부정리뷰</h2>
-            <div class="box-wrapper">
-              <div class="box">
-                {% for review in reviews %}
-                  {% if review.prediction == '긍정' %}
-                    <p>{{ review.review }} 👍🏻</p>
-                  {% endif %}
-                {% empty %}
-                  <p>긍정리뷰가 없습니다</p>
-                {% endfor %}
-              </div>
 
-              <div class="box">
-                {% for review in reviews %}
-                  {% if review.prediction == '부정' %}
-                    <p>{{ review.review }} 👎🏻</p>
-                  {% endif %}
-                {% empty %}
-                  <p>부정리뷰가 없습니다</p>
-                {% endfor %}
-              </div>
-            </div>
+        </style>
+
+
+        <span style="display: inline-block;" >
+          <h2>긍정리뷰</h2>
+        <div class="box-wrapper">
+          <float: left;
+          class="box">
+            {% for review in reviews %}
+              {% if review.prediction == '긍정' %}
+                <p>{{ review.review }} 👍🏻</p>
+              {% endif %}
+            {% empty %}
+              <p>긍정리뷰가 없습니다</p>
+            {% endfor %}
+          </float:>
+        </span>
+        
+
+
+        <span style="display: inline-block;" >
+            <h2>부정리뷰</h2>
+          <div class="box-wrapper">
+            <float: right;
+            class="box">
+              {% for review in reviews %}
+                {% if review.prediction == '부정' %}
+                  <p>{{ review.review }} 👎🏻</p>
+                {% endif %}
+              {% empty %}
+                <p>부정리뷰가 없습니다</p>
+              {% endfor %}
+            </float:>
+          </span>
+          
+
 
       
               
